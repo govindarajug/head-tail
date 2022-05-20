@@ -3,7 +3,7 @@
 - [ ] implement head to work on file content instead of file
 - [ ] write tests for joinLines and splitLines in head
 - [ ] implement option (-c) to specify number of bytes on head
-- [ ] pass delimiter to the head to split the content
+- [ ] pass delimiter to the head to join the content
 
 ## MAYBE
 
@@ -12,6 +12,7 @@
 
 ## DONE
 
+- [x] pass delimiter to the head to split the content
 - [x] make splitLines to take delimiter to split by
 - [x] implement option (-n) to specify number of lines on head
 - [x] write tests for sliceUpto in head
