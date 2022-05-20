@@ -1,10 +1,11 @@
-const sliceUptoTen = (list) => list.slice(0, 10);
+const sliceUpto = (list, count) => list.slice(0, count);
 const splitLines = (content) => content.split('\n');
 const joinLines = (lines) => lines.join('\n');
 
-const head = function (content) {
+const head = function (content, noOfLines) {
   const lines = splitLines(content);
-  return joinLines(sliceUptoTen(lines));
+  return joinLines(sliceUpto(lines, noOfLines));
 };
 
 exports.head = head;
+exports.sliceUpto = sliceUpto;
