@@ -1,5 +1,9 @@
 ## TODO
 
+- [ ] consider writing main function
+  - [x] hard code values to work for default of 10 lines
+  - [ ] take options as arguments
+  - [ ] pass readFileSync as argument
 - [ ] implement head to work on file content instead of file
 - [ ] write tests for joinLines and splitLines in head
 
@@ -7,7 +11,6 @@
 
 - [ ] consider moving misc functions to respective files
 - [ ] consider richer structure to pass for head
-- [ ] consider writing main function
 
 ## DONE
 

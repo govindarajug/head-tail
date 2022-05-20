@@ -1,3 +1,4 @@
+const fs = require('fs');
 const sliceUpto = (list, count) => list.slice(0, count);
 
 const splitBy = (content, delimiter) => content.split(delimiter);
@@ -8,5 +9,10 @@ const head = function (content, delimiter, noOfLines) {
   return joinBy(sliceUpto(lines, noOfLines), delimiter);
 };
 
+const headMain = function (fileName) {
+  return head('hello', '\n', 10);
+};
+
 exports.head = head;
 exports.sliceUpto = sliceUpto;
+exports.headMain = headMain;
