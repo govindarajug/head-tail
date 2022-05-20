@@ -2,13 +2,16 @@
 
 - [ ] implement head to work on file content instead of file
 - [ ] implement option (-n) to specify number of lines on head
+- [ ] write tests for sliceUptoTen in head
+- [ ] write tests for joinLines and splitLines in head
 
 ## MAYBE
 
-- [ ] consider extraction of joining and splitting in head
+- [ ] consider moving misc functions to respective files
 
 ## DONE
 
+- [x] consider extraction of joining and splitting in head
 - [x] consider extraction of slicing in head
 - [x] make head work for default value of 10
 - [x] make head work with one line
