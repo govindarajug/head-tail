@@ -5,16 +5,16 @@
   - [x] pass readFileSync as argument
   - [ ] take options as arguments
 - [ ] implement head to work on file content instead of file
-- [ ] write tests for joinLines and splitLines in head
 
 ## MAYBE
 
-- [ ] consider moving misc functions to respective files
 - [ ] consider separation of `testHeadLib.js`
 - [ ] consider richer structure to pass for head
 
 ## DONE
 
+- [x] consider moving misc functions to respective files
+- [x] write tests for joinLines and splitLines in head
 - [x] implement option (-c) to specify number of bytes on head
 - [x] pass delimiter to the head to join the content
 - [x] pass delimiter to the head to split the content

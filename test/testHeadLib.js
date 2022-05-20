@@ -1,5 +1,5 @@
 const assert = require('assert');
-const { head, sliceUpto, headMain } = require('../src/headLib.js');
+const { head, headMain } = require('../src/headLib.js');
 
 describe('head', () => {
   it('Should return content', () => {
@@ -20,13 +20,6 @@ describe('head', () => {
     assert.strictEqual(head('abc', '', 1), 'a');
     assert.strictEqual(head('abc', '', 2), 'ab');
     assert.strictEqual(head('a\nc', '', 2), 'a\n');
-  });
-});
-
-describe('sliceUpto', () => {
-  it('Should slice number of elements in array from start', () => {
-    assert.deepStrictEqual(sliceUpto([1, 2], 1), [1]);
-    assert.deepStrictEqual(sliceUpto([1, 2, 3, 4], 3), [1, 2, 3]);
   });
 });
 
