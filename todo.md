@@ -2,15 +2,16 @@
 
 - [ ] implement head to work on file content instead of file
 - [ ] write tests for joinLines and splitLines in head
-- [ ] implement option (-c) to specify number of bytes on head
 
 ## MAYBE
 
 - [ ] consider moving misc functions to respective files
+- [ ] consider richer structure to pass for head
 - [ ] consider writing main function
 
 ## DONE
 
+- [x] implement option (-c) to specify number of bytes on head
 - [x] pass delimiter to the head to join the content
 - [x] pass delimiter to the head to split the content
 - [x] make splitLines to take delimiter to split by
