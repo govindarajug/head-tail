@@ -1,9 +1,10 @@
 const sliceUpto = (list, count) => list.slice(0, count);
-const splitLines = (content) => content.split('\n');
+const splitBy = (content, delimiter) => content.split(delimiter);
 const joinLines = (lines) => lines.join('\n');
 
 const head = function (content, noOfLines) {
-  const lines = splitLines(content);
+  const delimiter = '\n';
+  const lines = splitBy(content, delimiter);
   return joinLines(sliceUpto(lines, noOfLines));
 };
 
