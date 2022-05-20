@@ -5,10 +5,11 @@
 
 ## MAYBE
 
-- [ ] consider extraction of slicing in head
+- [ ] consider extraction of joining and splitting in head
 
 ## DONE
 
+- [x] consider extraction of slicing in head
 - [x] make head work for default value of 10
 - [x] make head work with one line
 - [x] make testHeadLib.js
