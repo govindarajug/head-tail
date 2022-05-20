@@ -30,8 +30,17 @@ describe('sliceUpto', () => {
   });
 });
 
+const mockReadFileSync = (expectedFileName, content) => {
+  return (fileName, encoding) => {
+    assert.equal(expectedFileName, fileName);
+    assert.equal('utf8', encoding);
+    return content;
+  };
+};
+
 describe('headMain', () => {
   it('Should return content of the file', () => {
-    assert.strictEqual(headMain('./test/a.txt'), 'hello');
+    const mockedReadFileSync = mockReadFileSync('a.txt', 'hello');
+    assert.strictEqual(headMain('a.txt', mockedReadFileSync), 'hello');
   });
 });

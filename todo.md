@@ -2,14 +2,15 @@
 
 - [ ] consider writing main function
   - [x] hard code values to work for default of 10 lines
+  - [x] pass readFileSync as argument
   - [ ] take options as arguments
-  - [ ] pass readFileSync as argument
 - [ ] implement head to work on file content instead of file
 - [ ] write tests for joinLines and splitLines in head
 
 ## MAYBE
 
 - [ ] consider moving misc functions to respective files
+- [ ] consider separation of `testHeadLib.js`
 - [ ] consider richer structure to pass for head
 
 ## DONE
