@@ -1,15 +1,17 @@
 ## TODO
 
-- [ ] consider richer structure to pass for headMain
 - [ ] implement head.js to work on command line
-- [ ] implement head to work on file content instead of file
+- [ ] consider parsing of options
+- [ ] consider richer structure to pass for head
 
 ## MAYBE
 
-- [ ] consider parsing of options
+- [ ] consider throwing error if file cannot be read
 
 ## DONE
 
+- [x] consider richer structure to pass for headMain
+- [x] implement head to work on file content instead of file
 - [x] consider separation of `testHeadLib.js`
 - [x] consider writing main function
   - [x] hard code values to work for default of 10 lines

@@ -5,7 +5,10 @@ const head = function (content, delimiter, count) {
   return joinBy(sliceUpto(lines, count), delimiter);
 };
 
-const headMain = function (readFileSync, fileName, count, delimiter) {
+const headMain = function (readFileSync, ...args) {
+  const fileName = args[args.length - 1];
+  const delimiter = args[0] === '-c' ? '' : '\n';
+  const count = args[0].startsWith('-') ? args[1] : 10;
   return head(readFileSync(fileName, 'utf8'), delimiter, count);
 };
 
