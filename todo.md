@@ -2,11 +2,14 @@
 
 - [ ] implement head.js to work on command line
 - [ ] consider parsing of options
+  - [x] parse for just filename with defaults
+  - [ ] parse with the options
 - [ ] consider richer structure to pass for head
 
 ## MAYBE
 
 - [ ] consider throwing error if file cannot be read
+- [ ] consider throwing error when given option is invalid
 
 ## DONE
 
