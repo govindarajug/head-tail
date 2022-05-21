@@ -1,5 +1,5 @@
 const assert = require('assert');
-const { head, headMain } = require('../src/headLib.js');
+const { head } = require('../src/headLib.js');
 
 describe('head', () => {
   it('Should return content', () => {
@@ -20,30 +20,5 @@ describe('head', () => {
     assert.strictEqual(head('abc', '', 1), 'a');
     assert.strictEqual(head('abc', '', 2), 'ab');
     assert.strictEqual(head('a\nc', '', 2), 'a\n');
-  });
-});
-
-const mockReadFileSync = (expectedFileName, content) => {
-  return (fileName, encoding) => {
-    assert.equal(expectedFileName, fileName);
-    assert.equal('utf8', encoding);
-    return content;
-  };
-};
-
-describe('headMain', () => {
-  it('Should return content of the file', () => {
-    const mockedReadFileSync = mockReadFileSync('a.txt', 'hello');
-    assert.strictEqual(headMain(mockedReadFileSync, 'a.txt'), 'hello');
-  });
-
-  it('Should return first 2 lines of the file content', () => {
-    const mockedReadFileSync = mockReadFileSync('a.txt', 'a\nb\nc');
-    assert.strictEqual(headMain(mockedReadFileSync, 'a.txt', 2, '\n'), 'a\nb');
-  });
-
-  it('Should return first 3 characters of the file content', () => {
-    const mockedReadFileSync = mockReadFileSync('a.txt', 'abc');
-    assert.strictEqual(headMain(mockedReadFileSync, 'a.txt', 2, ''), 'ab');
   });
 });

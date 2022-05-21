@@ -6,11 +6,11 @@
 
 ## MAYBE
 
-- [ ] consider separation of `testHeadLib.js`
 - [ ] consider parsing of options
 
 ## DONE
 
+- [x] consider separation of `testHeadLib.js`
 - [x] consider writing main function
   - [x] hard code values to work for default of 10 lines
   - [x] pass readFileSync as argument
