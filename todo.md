@@ -1,18 +1,20 @@
 ## TODO
 
-- [ ] consider writing main function
-  - [x] hard code values to work for default of 10 lines
-  - [x] pass readFileSync as argument
-  - [ ] take options as arguments
+- [ ] consider richer structure to pass for headMain
+- [ ] implement head.js to work on command line
 - [ ] implement head to work on file content instead of file
 
 ## MAYBE
 
 - [ ] consider separation of `testHeadLib.js`
-- [ ] consider richer structure to pass for headMain
+- [ ] consider parsing of options
 
 ## DONE
 
+- [x] consider writing main function
+  - [x] hard code values to work for default of 10 lines
+  - [x] pass readFileSync as argument
+  - [x] take options as arguments
 - [x] consider moving misc functions to respective files
 - [x] write tests for joinLines and splitLines in head
 - [x] implement option (-c) to specify number of bytes on head

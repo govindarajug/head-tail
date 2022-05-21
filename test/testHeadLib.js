@@ -37,8 +37,13 @@ describe('headMain', () => {
     assert.strictEqual(headMain(mockedReadFileSync, 'a.txt'), 'hello');
   });
 
-  it('Should return first n lines of the file content', () => {
+  it('Should return first 2 lines of the file content', () => {
     const mockedReadFileSync = mockReadFileSync('a.txt', 'a\nb\nc');
-    assert.strictEqual(headMain(mockedReadFileSync, 'a.txt', 2), 'a\nb');
+    assert.strictEqual(headMain(mockedReadFileSync, 'a.txt', 2, '\n'), 'a\nb');
+  });
+
+  it('Should return first 3 characters of the file content', () => {
+    const mockedReadFileSync = mockReadFileSync('a.txt', 'abc');
+    assert.strictEqual(headMain(mockedReadFileSync, 'a.txt', 2, ''), 'ab');
   });
 });
