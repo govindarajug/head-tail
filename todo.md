@@ -10,6 +10,7 @@
 
 ## DONE
 
+- [x] print error file cannot be read to command line
 - [x] implement head.js to work on command line
 - [x] throw error if file cannot be read
 - [x] change the way of parsing options
