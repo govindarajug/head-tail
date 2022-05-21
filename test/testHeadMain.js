@@ -15,6 +15,15 @@ describe('headMain', () => {
     assert.strictEqual(headMain(mockedReadFileSync, 'a.txt'), 'hello');
   });
 
+  it('Should throw error when cannot read file', () => {
+    const mockedReadFileSync = mockReadFileSync('a.txt', 'hello');
+    assert.throws(() => headMain(mockedReadFileSync, 'missing.txt'), {
+      name: 'FileReadError',
+      message: 'Unable to read missing.txt',
+      fileName: 'missing.txt',
+    });
+  });
+
   it('Should return first 2 lines of the file content', () => {
     const mockedReadFileSync = mockReadFileSync('a.txt', 'a\nb\nc');
     assert.strictEqual(headMain(mockedReadFileSync, '-n', '2', 'a.txt'), 'a\nb');

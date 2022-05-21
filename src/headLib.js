@@ -9,7 +9,17 @@ const head = function (content, { option, count }) {
 
 const headMain = function (readFileSync, ...args) {
   const { fileName, options } = parseArgs(args);
-  return head(readFileSync(fileName, 'utf8'), options);
+  let content;
+  try {
+    content = readFileSync(fileName, 'utf8');
+  } catch (error) {
+    throw {
+      fileName,
+      name: 'FileReadError',
+      message: `Unable to read ${fileName}`
+    };
+  }
+  return head(content, options);
 };
 
 exports.head = head;

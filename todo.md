@@ -5,11 +5,11 @@
 
 ## MAYBE
 
-- [ ] consider throwing error if file cannot be read
 - [ ] consider throwing error when given option is invalid
 
 ## DONE
 
+- [x] throw error if file cannot be read
 - [x] change the way of parsing options
 - [x] consider parsing of options
   - [x] parse for just filename with defaults
