@@ -1,6 +1,5 @@
 ## TODO
 
-- [ ] change the way of parsing options
 - [ ] implement head.js to work on command line
 - [ ] consider richer structure to pass for head
 
@@ -11,6 +10,7 @@
 
 ## DONE
 
+- [x] change the way of parsing options
 - [x] consider parsing of options
   - [x] parse for just filename with defaults
   - [x] parse with the options
