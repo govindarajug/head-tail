@@ -1,9 +1,7 @@
 ## TODO
 
+- [ ] change the way of parsing options
 - [ ] implement head.js to work on command line
-- [ ] consider parsing of options
-  - [x] parse for just filename with defaults
-  - [x] parse with the options
 - [ ] consider richer structure to pass for head
 
 ## MAYBE
@@ -13,6 +11,9 @@
 
 ## DONE
 
+- [x] consider parsing of options
+  - [x] parse for just filename with defaults
+  - [x] parse with the options
 - [x] consider richer structure to pass for headMain
 - [x] implement head to work on file content instead of file
 - [x] consider separation of `testHeadLib.js`

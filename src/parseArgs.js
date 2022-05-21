@@ -1,9 +1,13 @@
 const parseArgs = function (args) {
   const fileName = args[args.length - 1];
-  const delimiter = args[0] === '-c' ? '' : '\n';
-  const count = args[0].startsWith('-') ? args[1] : '10';
-  
-  return { fileName, delimiter, count };
+  const keys = { '-n': 'lines', '-c': 'bytes' };
+  const options = { option: 'lines', count: 10 };
+  for (let index = 0; index < args.length - 1; index += 2) {
+    const [option, value] = args.slice(index, index + 2);
+    options.option = keys[option];
+    options.count = isFinite(value) ? +value : value;
+  }
+  return { fileName, options };
 };
 
 exports.parseArgs = parseArgs;
