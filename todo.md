@@ -1,7 +1,8 @@
 ## TODO
 
-- [ ] implement head.js to work on command line
 - [ ] consider richer structure to pass for head
+- [ ] validation for arguments in `parseArgs.js`
+- [ ] implement head.js to work for multiple files
 
 ## MAYBE
 
@@ -9,6 +10,7 @@
 
 ## DONE
 
+- [x] implement head.js to work on command line
 - [x] throw error if file cannot be read
 - [x] change the way of parsing options
 - [x] consider parsing of options
