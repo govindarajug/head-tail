@@ -1,6 +1,7 @@
 ## TODO
 
 - [ ] consider richer structure to pass for head
+- [ ] make `parseArgs.js` work for option and value given without space
 - [ ] validation for arguments in `parseArgs.js`
 - [ ] implement head.js to work for multiple files
 

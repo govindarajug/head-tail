@@ -18,4 +18,9 @@ describe('parseArgs', () => {
   it('Should parse -c option along with the file name', () => {
     assert.deepStrictEqual(parseArgs(['-c', '3', 'a.txt']), { fileName: 'a.txt', options: { option: 'bytes', count: 3 } });
   });
+
+  it('Should give illegal option error for option not starting with -', () => {
+    assert.throws(() => parseArgs(['f', '3', 'a.txt']), { message: '-- illegal option'});
+    assert.throws(() => parseArgs(['m', '3', 'a.txt']), { message: '-- illegal option'});
+  });
 });
