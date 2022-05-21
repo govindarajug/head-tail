@@ -34,6 +34,11 @@ const mockReadFileSync = (expectedFileName, content) => {
 describe('headMain', () => {
   it('Should return content of the file', () => {
     const mockedReadFileSync = mockReadFileSync('a.txt', 'hello');
-    assert.strictEqual(headMain('a.txt', mockedReadFileSync), 'hello');
+    assert.strictEqual(headMain(mockedReadFileSync, 'a.txt'), 'hello');
+  });
+
+  it('Should return first n lines of the file content', () => {
+    const mockedReadFileSync = mockReadFileSync('a.txt', 'a\nb\nc');
+    assert.strictEqual(headMain(mockedReadFileSync, 'a.txt', 2), 'a\nb');
   });
 });

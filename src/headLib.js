@@ -5,8 +5,8 @@ const head = function (content, delimiter, noOfLines) {
   return joinBy(sliceUpto(lines, noOfLines), delimiter);
 };
 
-const headMain = function (fileName, readFileSync) {
-  return head(readFileSync(fileName, 'utf8'), '\n', '10');
+const headMain = function (readFileSync, fileName, count) {
+  return head(readFileSync(fileName, 'utf8'), '\n', count);
 };
 
 exports.head = head;

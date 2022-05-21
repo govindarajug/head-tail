@@ -10,8 +10,8 @@ describe('sliceUpto', () => {
 
 describe('joinBy', () => {
   it('Should join array elements by given delimiter', () => {
-    assert.deepStrictEqual(joinBy(['a', 'b'], '\n'), 'a\nb');
-    assert.deepStrictEqual(joinBy(['a', 'b', 'c'], ''), 'abc');
+    assert.strictEqual(joinBy(['a', 'b'], '\n'), 'a\nb');
+    assert.strictEqual(joinBy(['a', 'b', 'c'], ''), 'abc');
   });
 });
 

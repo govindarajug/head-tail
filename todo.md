@@ -9,7 +9,7 @@
 ## MAYBE
 
 - [ ] consider separation of `testHeadLib.js`
-- [ ] consider richer structure to pass for head
+- [ ] consider richer structure to pass for headMain
 
 ## DONE
 
