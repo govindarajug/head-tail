@@ -22,8 +22,10 @@ const parseFileName = function (iterator) {
   return iterator.args[iterator.index];
 };
 
+const isValidOption = (option) => ['-n', '-c'].includes(option);
+
 const parseOption = function (iterator) {
-  if (!['-n', '-c'].includes(iterator.currentArg())) {
+  if (!isValidOption(iterator.currentArg())) {
     throw {
       message: `head: illegal option -- ${iterator.currentArg().slice(1)}`
     };
@@ -50,7 +52,7 @@ const parseArgs = function (args) {
       options = parseOption(iterator);
     } catch (error) {
       throw {
-        message: error.message, usage
+        message: `${error.message}\n${usage}`
       };
     } 
     iterator.index++;

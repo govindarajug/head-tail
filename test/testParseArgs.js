@@ -25,10 +25,10 @@ describe('parseArgs', () => {
 
   it('Should give illegal option error for options other than n,c', () => {
     assert.throws(() => parseArgs(['-f', '3', 'a.txt']), {
-      message: 'head: illegal option -- f'
+      message: 'head: illegal option -- f\nusage: head [-n lines | -c bytes] [file ...]'
     });
     assert.throws(() => parseArgs(['-m', '3', 'a.txt']), {
-      message: 'head: illegal option -- m'
+      message: 'head: illegal option -- m\nusage: head [-n lines | -c bytes] [file ...]'
     });
   });
 });

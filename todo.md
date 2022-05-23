@@ -1,7 +1,6 @@
 ## TODO
 
 - [ ] throw error when next argument to switch is not a number
-- [ ] format the error when file cannot be read
 - [ ] consider richer structure to pass for head
 - [ ] make `parseArgs.js` work for option and value given without space
 - [ ] implement head.js to work for multiple files
@@ -12,6 +11,7 @@
 
 ## DONE
 
+- [x] format the error when file cannot be read
 - [x] consider throwing error when given option is invalid
 - [x] print error file cannot be read to command line
 - [x] implement head.js to work on command line
