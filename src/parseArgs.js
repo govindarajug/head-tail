@@ -23,6 +23,11 @@ const parseFileName = function (iterator) {
 };
 
 const parseOption = function (iterator) {
+  if (!['-n', '-c'].includes(iterator.currentArg())) {
+    throw {
+      message: `head: illegal option -- ${iterator.currentArg().slice(1)}`
+    };
+  }
   let option = 'lines';
   if (iterator.currentArg() === '-c') {
     option = 'bytes';
@@ -36,12 +41,18 @@ const parseArgs = function (args) {
   const usage = 'usage: head [-n lines | -c bytes] [file ...]';
   if (args.length === 0) {
     throw {
-      usage
+      message: usage
     };
   }
   const iterator = argsIterator(args);
   while (iterator.hasMoreArgs() && iterator.currentArg().startsWith('-')) {
-    options = parseOption(iterator);
+    try {
+      options = parseOption(iterator);
+    } catch (error) {
+      throw {
+        message: error.message, usage
+      };
+    } 
     iterator.index++;
   }
   const fileName = parseFileName(iterator);

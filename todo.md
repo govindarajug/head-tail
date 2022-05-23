@@ -1,16 +1,18 @@
 ## TODO
 
+- [ ] throw error when next argument to switch is not a number
+- [ ] format the error when file cannot be read
 - [ ] consider richer structure to pass for head
 - [ ] make `parseArgs.js` work for option and value given without space
-- [ ] validation for arguments in `parseArgs.js`
 - [ ] implement head.js to work for multiple files
+- [ ] validation for arguments in `parseArgs.js`
 
 ## MAYBE
 
-- [ ] consider throwing error when given option is invalid
 
 ## DONE
 
+- [x] consider throwing error when given option is invalid
 - [x] print error file cannot be read to command line
 - [x] implement head.js to work on command line
 - [x] throw error if file cannot be read
