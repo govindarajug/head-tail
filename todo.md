@@ -2,6 +2,7 @@
 
 - [ ] consider richer structure to pass for head
 - [ ] implement head.js to work for multiple files
+- [ ] parse filenames as array on `parseArgs.js`
 
 ## MAYBE
 

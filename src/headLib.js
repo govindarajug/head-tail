@@ -8,17 +8,19 @@ const head = function (content, { option, count }) {
 };
 
 const headMain = function (readFileSync, ...args) {
-  const { fileName, options } = parseArgs(args);
+  const { fileNames, options } = parseArgs(args);
   let content;
-  try {
-    content = readFileSync(fileName, 'utf8');
-  } catch (error) {
-    throw {
-      fileName,
-      name: 'FileReadError',
-      message: `${fileName}: No such file or directory`
-    };
-  }
+  fileNames.map((fileName) => {
+    try {
+      content = readFileSync(fileName, 'utf8');
+    } catch (error) {
+      throw {
+        fileName,
+        name: 'FileReadError',
+        message: `${fileName}: No such file or directory`
+      };
+    }
+  });
   return head(content, options);
 };
 

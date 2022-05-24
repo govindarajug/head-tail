@@ -19,7 +19,7 @@ const argsIterator = function (args) {
 };
 
 const parseFileName = function (iterator) {
-  return iterator.args[iterator.index];
+  return iterator.args.slice([iterator.index]);
 };
 
 const isValidOption = (option) => ['-n', '-c'].includes(option);
@@ -97,8 +97,8 @@ const parseArgs = function (args) {
     options.count = parseCount(iterator.nextArg(), options.option);
     iterator.index++;
   }
-  const fileName = parseFileName(iterator);
-  return { fileName, options };
+  const fileNames = parseFileName(iterator);
+  return { fileNames, options };
 };
 
 exports.parseArgs = parseArgs;

@@ -6,26 +6,27 @@ describe('parseArgs', () => {
     assert.throws(() => parseArgs([]), { message: 'usage: head [-n lines | -c bytes] [file ...]' });
   });
 
-  it('Should parse just the file name', () => {
-    assert.deepStrictEqual(parseArgs(['a.txt']), { fileName: 'a.txt', options: { option: 'lines', count: 10 } });
+  it('Should parse just the file name in array', () => {
+    assert.deepStrictEqual(parseArgs(['a.txt']), { fileNames: ['a.txt'], options: { option: 'lines', count: 10 } });
+    assert.deepStrictEqual(parseArgs(['a.txt', 'b.txt']), { fileNames: ['a.txt', 'b.txt'], options: { option: 'lines', count: 10 } });
   });
 
   it('Should parse -n option along with the file name', () => {
-    assert.deepStrictEqual(parseArgs(['-n', '2', 'a.txt']), { fileName: 'a.txt', options: { option: 'lines', count: 2 } });
+    assert.deepStrictEqual(parseArgs(['-n', '2', 'a.txt']), { fileNames: ['a.txt'], options: { option: 'lines', count: 2 } });
   });
   
   it('Should parse latest value  of option along with the file name', () => {
-    assert.deepStrictEqual(parseArgs(['-n', '2', '-n', '3', 'a.txt']), { fileName: 'a.txt', options: { option: 'lines', count: 3 } });
-    assert.deepStrictEqual(parseArgs(['-c', '2', '-c', '1', 'a.txt']), { fileName: 'a.txt', options: { option: 'bytes', count: 1 } });
+    assert.deepStrictEqual(parseArgs(['-n', '2', '-n', '3', 'a.txt']), { fileNames: ['a.txt'], options: { option: 'lines', count: 3 } });
+    assert.deepStrictEqual(parseArgs(['-c', '2', '-c', '1', 'a.txt']), { fileNames: ['a.txt'], options: { option: 'bytes', count: 1 } });
   });
 
   it('Should parse -c option along with the file name', () => {
-    assert.deepStrictEqual(parseArgs(['-c', '3', 'a.txt']), { fileName: 'a.txt', options: { option: 'bytes', count: 3 } });
+    assert.deepStrictEqual(parseArgs(['-c', '3', 'a.txt']), { fileNames: ['a.txt'], options: { option: 'bytes', count: 3 } });
   });
 
   it('Should parse -number option as -n and number', () => {
-    assert.deepStrictEqual(parseArgs(['-3', 'a.txt']), { fileName: 'a.txt', options: { option: 'lines', count: 3 } });
-    assert.deepStrictEqual(parseArgs(['-10', 'a.txt']), { fileName: 'a.txt', options: { option: 'lines', count: 10 } });
+    assert.deepStrictEqual(parseArgs(['-3', 'a.txt']), { fileNames: ['a.txt'], options: { option: 'lines', count: 3 } });
+    assert.deepStrictEqual(parseArgs(['-10', 'a.txt']), { fileNames: ['a.txt'], options: { option: 'lines', count: 10 } });
   });
 
   it('Should throw error when next argument to option is not a number', () => {
@@ -61,7 +62,7 @@ describe('splitArgs', () => {
     assert.deepStrictEqual(splitArgs(['-1']), ['-n', '1']);
   });
 
-  it('Should not split for filenames', () => {
+  it('Should not split for filenamess', () => {
     assert.deepStrictEqual(splitArgs(['-n', '10', 'a.txt']), ['-n', '10', 'a.txt']);
     assert.deepStrictEqual(splitArgs(['-c', '2', 'a.txt', 'b.txt']), ['-c', '2', 'a.txt', 'b.txt']);
   });
