@@ -1,17 +1,13 @@
 ## TODO
 
-- [ ] consider richer structure to pass for head
-- [ ] implement head.js to work for multiple files
-- [ ] parse filenames as array on `parseArgs.js`
 
 ## MAYBE
 
-- [ ] consider moving validations to separate file
-- [ ] consider moving iterator to separate file
-- [ ] consider writing tests to iterator
-
 ## DONE
 
+- [x] consider richer structure to pass for head
+- [x] implement head.js to work for multiple files
+- [x] parse filenames as array on `parseArgs.js`
 - [x] validation for arguments in `parseArgs.js`
 - [x] make `parseArgs.js` work for option and value given without space
 - [x] split args in parser

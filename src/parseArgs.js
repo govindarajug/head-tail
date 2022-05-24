@@ -18,10 +18,6 @@ const argsIterator = function (args) {
   return iterator;
 };
 
-const parseFileName = function (iterator) {
-  return iterator.args.slice([iterator.index]);
-};
-
 const isValidOption = (option) => ['-n', '-c'].includes(option);
 const isValidCount = function (count) {
   return isFinite(count) && count !== 0;
@@ -47,6 +43,13 @@ const invalidCombinationError = () => {
   return {
     message: 'head: can\'t combine line and byte counts'
   };
+};
+
+const parseFileName = function (iterator) {
+  if (iterator.index === iterator.args.length) {
+    throw usageError();
+  }
+  return iterator.args.slice([iterator.index]);
 };
 
 const parseOption = function (option) {

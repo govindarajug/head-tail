@@ -7,21 +7,45 @@ const head = function (content, { option, count }) {
   return joinBy(sliceUpto(lines, count), delimiter);
 };
 
-const headMain = function (readFileSync, ...args) {
+const processFile = function (options, fileName, readFileSync, formatter) {
+  const result = { fileName };
+  try {
+    result.content = head(readFileSync(fileName, 'utf8'), options);
+    result.format = formatter(result);
+  } catch (error) {
+    result.error = {
+      name: 'FileReadError',
+      message: `${fileName}: No such file or directory`
+    };
+  }
+  return result;
+};
+
+const print = function (logger, result) {
+  if (result.error !== undefined) {
+    logger.error(result.error.message);
+    return;
+  }
+  logger.log(result.format + result.content);
+};
+
+const printResult = function (logger, result) {
+  result.map((content) => print(logger, content));
+};
+
+const multiFileFormat = function (content) {
+  return `==> ${content.fileName} <==\n`;
+};
+
+const headMain = function (logger, readFile, ...args) {
   const { fileNames, options } = parseArgs(args);
-  let content;
-  fileNames.map((fileName) => {
-    try {
-      content = readFileSync(fileName, 'utf8');
-    } catch (error) {
-      throw {
-        fileName,
-        name: 'FileReadError',
-        message: `${fileName}: No such file or directory`
-      };
-    }
-  });
-  return head(content, options);
+  let formatter = () => '';
+  if (fileNames.length > 1) {
+    formatter = multiFileFormat;
+  }
+  const result = fileNames.map(file =>
+    processFile(options, file, readFile, formatter));
+  printResult(logger, result);
 };
 
 exports.head = head;

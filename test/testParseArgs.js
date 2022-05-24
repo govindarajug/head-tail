@@ -14,6 +14,10 @@ describe('parseArgs', () => {
   it('Should parse -n option along with the file name', () => {
     assert.deepStrictEqual(parseArgs(['-n', '2', 'a.txt']), { fileNames: ['a.txt'], options: { option: 'lines', count: 2 } });
   });
+
+  it('Should throw usage when file name is not given', () => {
+    assert.throws(() => parseArgs(['-n', '2']), { message: 'usage: head [-n lines | -c bytes] [file ...]' });
+  });
   
   it('Should parse latest value  of option along with the file name', () => {
     assert.deepStrictEqual(parseArgs(['-n', '2', '-n', '3', 'a.txt']), { fileNames: ['a.txt'], options: { option: 'lines', count: 3 } });
