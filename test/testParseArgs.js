@@ -32,6 +32,10 @@ describe('parseArgs', () => {
     assert.throws(() => parseArgs(['-n', 'a', 'a.txt']), { message: 'head: illegal lines count -- a' });
   });
 
+  it('Should throw error if both options are given', () => {
+    assert.throws(() => parseArgs(['-n2', '-c3', 'a.txt']), { message: 'head: can\'t combine line and byte counts' });
+  });
+
   it('Should give illegal option error for options other than n,c', () => {
     assert.throws(() => parseArgs(['-f', '3', 'a.txt']), {
       message: 'head: illegal option -- f\nusage: head [-n lines | -c bytes] [file ...]'

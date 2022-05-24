@@ -43,6 +43,12 @@ const inValidCountError = (option, count) => {
   };
 };
 
+const invalidCombinationError = () => {
+  return {
+    message: 'head: can\'t combine line and byte counts'
+  };
+};
+
 const parseOption = function (option) {
   if (!isValidOption(option)) {
     throw inValidOptionError(option);
@@ -63,7 +69,7 @@ const isOption = (option) => option.startsWith('-');
 const splitArg = function (arg) {
   if (isFinite(arg.slice(1))) {
     return ['-n', arg.slice(1)];
-  };
+  }
   return [arg.slice(0, 2), arg.slice(2)];
 };
 
@@ -72,14 +78,21 @@ const splitArgs = function (args) {
   return splittedArgs.filter(arg => arg);
 };
 
+const throwIfBothOptionsPresent = (args) => {
+  if (args.includes('-n') && args.includes('-c')) {
+    throw invalidCombinationError();
+  }
+};
+
 const parseArgs = function (args) {
   const options = { option: 'lines', count: 10 };
   if (args.length === 0) {
     throw usageError();
   }
   const splittedArgs = splitArgs(args);
+  throwIfBothOptionsPresent(splittedArgs);
   const iterator = argsIterator(splittedArgs);
-  while (iterator.hasMoreArgs() && iterator.currentArg().startsWith('-')) {
+  while (iterator.hasMoreArgs() && isOption(iterator.currentArg())) {
     options.option = parseOption(iterator.currentArg());
     options.count = parseCount(iterator.nextArg(), options.option);
     iterator.index++;

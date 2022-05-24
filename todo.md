@@ -2,7 +2,6 @@
 
 - [ ] consider richer structure to pass for head
 - [ ] implement head.js to work for multiple files
-- [ ] validation for arguments in `parseArgs.js`
 
 ## MAYBE
 
@@ -12,6 +11,7 @@
 
 ## DONE
 
+- [x] validation for arguments in `parseArgs.js`
 - [x] make `parseArgs.js` work for option and value given without space
 - [x] split args in parser
 - [x] throw error when next argument to switch is not a number
