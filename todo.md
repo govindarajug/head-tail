@@ -1,6 +1,5 @@
 ## TODO
 
-- [ ] throw error when next argument to switch is not a number
 - [ ] consider richer structure to pass for head
 - [ ] make `parseArgs.js` work for option and value given without space
 - [ ] implement head.js to work for multiple files
@@ -8,9 +7,13 @@
 
 ## MAYBE
 
+- [ ] consider moving validations to separate file
+- [ ] consider moving iterator to separate file
+- [ ] consider writing tests to iterator
 
 ## DONE
 
+- [x] throw error when next argument to switch is not a number
 - [x] format the error when file cannot be read
 - [x] consider throwing error when given option is invalid
 - [x] print error file cannot be read to command line

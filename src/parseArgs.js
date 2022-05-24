@@ -23,38 +23,50 @@ const parseFileName = function (iterator) {
 };
 
 const isValidOption = (option) => ['-n', '-c'].includes(option);
+const isValidCount = function (count) {
+  return isFinite(count) && count !== 0;
+};
 
-const parseOption = function (iterator) {
-  if (!isValidOption(iterator.currentArg())) {
-    throw {
-      message: `head: illegal option -- ${iterator.currentArg().slice(1)}`
-    };
+const usageError = () => {
+  return { message: 'usage: head [-n lines | -c bytes] [file ...]' };
+};
+
+const inValidOptionError = (option) => {
+  return {
+    message: `head: illegal option -- ${option[1]}\n${usageError().message}`
+  };
+};
+
+const inValidCountError = (option, count) => {
+  return {
+    message: `head: illegal ${option} count -- ${count}`
+  };
+};
+
+const parseOption = function (option) {
+  if (!isValidOption(option)) {
+    throw inValidOptionError(option);
   }
-  let option = 'lines';
-  if (iterator.currentArg() === '-c') {
-    option = 'bytes';
+  const map = {'-n': 'lines', '-c': 'bytes'};
+  return map[option];
+};
+
+const parseCount = function (count, option) {
+  if (!isValidCount(+count)) {
+    throw inValidCountError(option, count);
   }
-  const count = +iterator.nextArg();
-  return { option, count };
+  return +count;
 };
 
 const parseArgs = function (args) {
-  let options = { option: 'lines', count: 10 };
-  const usage = 'usage: head [-n lines | -c bytes] [file ...]';
+  const options = { option: 'lines', count: 10 };
   if (args.length === 0) {
-    throw {
-      message: usage
-    };
+    throw usageError();
   }
   const iterator = argsIterator(args);
   while (iterator.hasMoreArgs() && iterator.currentArg().startsWith('-')) {
-    try {
-      options = parseOption(iterator);
-    } catch (error) {
-      throw {
-        message: `${error.message}\n${usage}`
-      };
-    } 
+    options.option = parseOption(iterator.currentArg());
+    options.count = parseCount(iterator.nextArg(), options.option);
     iterator.index++;
   }
   const fileName = parseFileName(iterator);

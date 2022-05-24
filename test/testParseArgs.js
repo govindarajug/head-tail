@@ -23,6 +23,10 @@ describe('parseArgs', () => {
     assert.deepStrictEqual(parseArgs(['-c', '3', 'a.txt']), { fileName: 'a.txt', options: { option: 'bytes', count: 3 } });
   });
 
+  it('Should throw error when next argument to option is not a number', () => {
+    assert.throws(() => parseArgs(['-n', 'a', 'a.txt']), { message: 'head: illegal lines count -- a' });
+  });
+
   it('Should give illegal option error for options other than n,c', () => {
     assert.throws(() => parseArgs(['-f', '3', 'a.txt']), {
       message: 'head: illegal option -- f\nusage: head [-n lines | -c bytes] [file ...]'
