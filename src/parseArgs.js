@@ -58,12 +58,27 @@ const parseCount = function (count, option) {
   return +count;
 };
 
+const isOption = (option) => option.startsWith('-');
+
+const splitArg = function (arg) {
+  if (isFinite(arg.slice(1))) {
+    return ['-n', arg.slice(1)];
+  };
+  return [arg.slice(0, 2), arg.slice(2)];
+};
+
+const splitArgs = function (args) {
+  const splittedArgs = args.flatMap(arg => isOption(arg) ? splitArg(arg) : arg);
+  return splittedArgs.filter(arg => arg);
+};
+
 const parseArgs = function (args) {
   const options = { option: 'lines', count: 10 };
   if (args.length === 0) {
     throw usageError();
   }
-  const iterator = argsIterator(args);
+  const splittedArgs = splitArgs(args);
+  const iterator = argsIterator(splittedArgs);
   while (iterator.hasMoreArgs() && iterator.currentArg().startsWith('-')) {
     options.option = parseOption(iterator.currentArg());
     options.count = parseCount(iterator.nextArg(), options.option);
@@ -74,3 +89,4 @@ const parseArgs = function (args) {
 };
 
 exports.parseArgs = parseArgs;
+exports.splitArgs = splitArgs;

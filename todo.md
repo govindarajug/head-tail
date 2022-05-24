@@ -1,7 +1,6 @@
 ## TODO
 
 - [ ] consider richer structure to pass for head
-- [ ] make `parseArgs.js` work for option and value given without space
 - [ ] implement head.js to work for multiple files
 - [ ] validation for arguments in `parseArgs.js`
 
@@ -13,6 +12,8 @@
 
 ## DONE
 
+- [x] make `parseArgs.js` work for option and value given without space
+- [x] split args in parser
 - [x] throw error when next argument to switch is not a number
 - [x] format the error when file cannot be read
 - [x] consider throwing error when given option is invalid
