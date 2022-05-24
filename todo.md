@@ -1,10 +1,13 @@
 ## TODO
 
+- [ ] implement tail for `-n` option
+- [ ] implement tail for `-c` option
 
 ## MAYBE
 
 ## DONE
 
+- [x] make tail work when only filename is given
 - [x] consider richer structure to pass for head
 - [x] implement head.js to work for multiple files
 - [x] parse filenames as array on `parseArgs.js`
