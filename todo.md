@@ -1,12 +1,15 @@
 ## TODO
 
-- [ ] implement tail for `-n` option
 - [ ] implement tail for `-c` option
+- [ ] update readme.md with new requirements
 
 ## MAYBE
 
+- [ ] implement tail to work from command line
+
 ## DONE
 
+- [x] implement tail for `-n` option
 - [x] make tail work when only filename is given
 - [x] consider richer structure to pass for head
 - [x] implement head.js to work for multiple files
