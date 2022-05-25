@@ -4,6 +4,9 @@ const lastNLines = function (content, count) {
 };
 
 const tail = function (content, option, count) {
+  if (option === '-c') {
+    return content.slice(content.length - count);
+  }
   return lastNLines(content, count);
 };
 

@@ -10,6 +10,11 @@ describe('tail', () => {
     assert.strictEqual(tail('a\nb\nc\nd', '-n', 2), 'c\nd');
     assert.strictEqual(tail('a\nb\nc\nd\ne', '-n', 2), 'd\ne');
   });
+  
+  it('Should return last 2 bytes of the content', () => {
+    assert.strictEqual(tail('abcd', '-c', 2), 'cd');
+    assert.strictEqual(tail('abcde', '-c', 2), 'de');
+  });
 });
 
 describe('lastNLines', () => {
