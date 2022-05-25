@@ -7,10 +7,10 @@ const head = function (content, { option, count }) {
   return joinBy(sliceUpto(lines, count), delimiter);
 };
 
-const processFile = function (options, fileName, readFileSync, formatter) {
+const processFile = function (fn, options, fileName, readFileSync, formatter) {
   const result = { fileName };
   try {
-    result.content = head(readFileSync(fileName, 'utf8'), options);
+    result.content = fn(readFileSync(fileName, 'utf8'), options);
     result.format = formatter(result);
   } catch (error) {
     result.error = {
@@ -43,10 +43,15 @@ const headMain = function (logger, readFile, ...args) {
   if (fileNames.length > 1) {
     formatter = multiFileFormat;
   }
+  const func = head;
   const result = fileNames.map(file =>
-    processFile(options, file, readFile, formatter));
+    processFile(func, options, file, readFile, formatter));
   printResult(logger, result);
 };
 
 exports.head = head;
 exports.headMain = headMain;
+exports.parseArgs = parseArgs;
+exports.multiFileFormat = multiFileFormat;
+exports.processFile = processFile;
+exports.printResult = printResult;

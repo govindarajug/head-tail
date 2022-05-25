@@ -3,17 +3,17 @@ const { tail, lastNLines, lastNBytes } = require('../src/tailLib');
 
 describe('tail', () => {
   it('Should return the file content', () => {
-    assert.strictEqual(tail('hello'), 'hello');
+    assert.strictEqual(tail('hello', { option: 'lines', count: 10 }), 'hello');
   });
 
   it('Should return last 2 lines of the content', () => {
-    assert.strictEqual(tail('a\nb\nc\nd', '-n', 2), 'c\nd');
-    assert.strictEqual(tail('a\nb\nc\nd\ne', '-n', 2), 'd\ne');
+    assert.strictEqual(tail('a\nb\nc\nd', { option: 'lines', count: 2 }), 'c\nd');
+    assert.strictEqual(tail('a\nb\nc\nd\ne', { option: 'lines', count: 2 }), 'd\ne');
   });
   
   it('Should return last 2 bytes of the content', () => {
-    assert.strictEqual(tail('abcd', '-c', 2), 'cd');
-    assert.strictEqual(tail('abcde', '-c', 2), 'de');
+    assert.strictEqual(tail('abcd', { option: 'bytes', count: 2 }), 'cd');
+    assert.strictEqual(tail('abcde', { option: 'bytes', count: 2 }), 'de');
   });
 });
 
