@@ -1,5 +1,5 @@
 const assert = require('assert');
-const { tail, lastNLines } = require('../src/tailLib');
+const { tail, lastNLines, lastNBytes } = require('../src/tailLib');
 
 describe('tail', () => {
   it('Should return the file content', () => {
@@ -21,5 +21,12 @@ describe('lastNLines', () => {
   it('Should return last 2 lines of the content', () => {
     assert.strictEqual(lastNLines('a\nb\nc', 2), 'b\nc');
     assert.strictEqual(lastNLines('a\nb\nc\nd\ne', 2), 'd\ne');
+  });
+});
+
+describe('lastNBytes', () => {
+  it('Should return last 2 bytes of the content', () => {
+    assert.strictEqual(lastNBytes('abc', 2), 'bc');
+    assert.strictEqual(lastNBytes('abcde', 2), 'de');
   });
 });

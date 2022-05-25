@@ -1,7 +1,7 @@
 ## TODO
 
-- [ ] implement tail for `-c` option
-- [ ] update readme.md with new requirements
+- [ ] implement tail for `-q` option
+- [ ] implement tail for `-r` option
 
 ## MAYBE
 
@@ -9,6 +9,8 @@
 
 ## DONE
 
+- [x] implement tail for `-c` option
+- [x] update readme.md with new requirements
 - [x] implement tail for `-n` option
 - [x] make tail work when only filename is given
 - [x] consider richer structure to pass for head
