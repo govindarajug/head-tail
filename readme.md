@@ -1,6 +1,6 @@
 ## HEAD
 
-`head [-n count | -c bytes] file(s)`
+`head [-n lines | -c bytes] file(s)`
 
 ```
 head file(s)
@@ -17,7 +17,7 @@ If more than one file is provided as arguments each file's output is preceded by
 
 ## TAIL
 
-`tail [-n count | -c bytes] file(s)`
+`tail  [-r] [-q] [-c bytes | -n lines] [file ...]`
 
 ```
 tail file(s)
@@ -28,6 +28,12 @@ tail -n count file(s)
 
 tail -c count file(s)
   displays last count of bytes of the specified files.
+
+tail -q
+  suppresses printing headers  when multiple files are being examined.
+
+tail -r
+  input to be displayed in reverse order, by line.
 
 If more than one file is provided as arguments each file's output is preceded by ==> filename <==
 ```
