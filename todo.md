@@ -5,10 +5,13 @@
 
 ## MAYBE
 
-- [ ] implement tail to work from command line
+- [ ] consider sending richer structure to tail
+- [ ] consider writing parser for parsing options
+- [ ] consider implementing tail to work for multiple files
 
 ## DONE
 
+- [x] implement tail to work from command line
 - [x] implement tail for `-c` option
 - [x] update readme.md with new requirements
 - [x] implement tail for `-n` option
