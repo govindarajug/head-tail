@@ -1,3 +1,5 @@
+# TAIL
+
 ## TODO
 
 - [ ] implement tail for `-q` option
@@ -7,15 +9,24 @@
 
 - [ ] consider sending richer structure to tail
 - [ ] consider writing parser for parsing options
-- [ ] consider implementing tail to work for multiple files
 
 ## DONE
 
+- [x] consider implementing tail to work for multiple files
 - [x] implement tail to work from command line
 - [x] implement tail for `-c` option
 - [x] update readme.md with new requirements
 - [x] implement tail for `-n` option
 - [x] make tail work when only filename is given
+
+# HEAD
+
+## TODO
+
+## MAYBE
+
+## DONE
+
 - [x] consider richer structure to pass for head
 - [x] implement head.js to work for multiple files
 - [x] parse filenames as array on `parseArgs.js`

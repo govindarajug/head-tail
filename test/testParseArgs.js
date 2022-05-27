@@ -1,5 +1,5 @@
 const assert = require('assert');
-const { parseArgs, splitArgs } = require('../src/parseArgs.js');
+const { parseArgs, splitArgs, isOption } = require('../src/parseArgs.js');
 
 describe('parseArgs', () => {
   it('Should show usage when no args are given', () => {
@@ -66,8 +66,20 @@ describe('splitArgs', () => {
     assert.deepStrictEqual(splitArgs(['-1']), ['-n', '1']);
   });
 
-  it('Should not split for filenamess', () => {
+  it('Should not split for filenames', () => {
     assert.deepStrictEqual(splitArgs(['-n', '10', 'a.txt']), ['-n', '10', 'a.txt']);
     assert.deepStrictEqual(splitArgs(['-c', '2', 'a.txt', 'b.txt']), ['-c', '2', 'a.txt', 'b.txt']);
+  });
+});
+
+describe('isOption', () => {
+  it('Should return true when arg is starting with -', () => {
+    assert.strictEqual(isOption('-n'), true);
+    assert.strictEqual(isOption('-f'), true);
+  });
+
+  it('Should return false when arg not starting with -', () => {
+    assert.strictEqual(isOption('32'), false);
+    assert.strictEqual(isOption('abc'), false);
   });
 });

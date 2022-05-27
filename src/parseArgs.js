@@ -18,7 +18,7 @@ const argsIterator = function (args) {
   return iterator;
 };
 
-const isValidOption = (option) => ['-n', '-c'].includes(option);
+const isValidFlag = (option) => ['-n', '-c'].includes(option);
 const isValidCount = function (count) {
   return isFinite(count) && count !== 0;
 };
@@ -34,12 +34,13 @@ const inValidOptionError = (option) => {
 };
 
 const inValidCountError = (option, count) => {
+  const map = { '-n': 'lines', '-c': 'bytes' };
   return {
-    message: `head: illegal ${option} count -- ${count}`
+    message: `head: illegal ${map[option]} count -- ${count}`
   };
 };
 
-const invalidCombinationError = () => {
+const inValidCombinationError = () => {
   return {
     message: 'head: can\'t combine line and byte counts'
   };
@@ -52,8 +53,8 @@ const parseFileName = function (iterator) {
   return iterator.args.slice([iterator.index]);
 };
 
-const parseOption = function (option) {
-  if (!isValidOption(option)) {
+const parseFlag = function (option) {
+  if (!isValidFlag(option)) {
     throw inValidOptionError(option);
   }
   const map = {'-n': 'lines', '-c': 'bytes'};
@@ -67,7 +68,7 @@ const parseCount = function (count, option) {
   return +count;
 };
 
-const isOption = (option) => option.startsWith('-');
+const isOption = (arg) => arg.startsWith('-');
 
 const splitArg = function (arg) {
   if (isFinite(arg.slice(1))) {
@@ -83,22 +84,22 @@ const splitArgs = function (args) {
 
 const throwIfBothOptionsPresent = (args) => {
   if (args.includes('-n') && args.includes('-c')) {
-    throw invalidCombinationError();
+    throw inValidCombinationError();
   }
 };
 
-const parseArgs = function (args) {
-  const options = { option: 'lines', count: 10 };
-  if (args.length === 0) {
-    throw usageError();
-  }
-  const splittedArgs = splitArgs(args);
-  throwIfBothOptionsPresent(splittedArgs);
-  const iterator = argsIterator(splittedArgs);
+const parseOption = function (flag, count) {
+  return { option: parseFlag(flag), count: parseCount(count, flag) };
+};
+
+const parseArgs = function (rawArgs) {
+  let options = { option: 'lines', count: 10 };
+  const args = splitArgs(rawArgs);
+  throwIfBothOptionsPresent(args);
+  const iterator = argsIterator(args);
   while (iterator.hasMoreArgs() && isOption(iterator.currentArg())) {
-    options.option = parseOption(iterator.currentArg());
-    options.count = parseCount(iterator.nextArg(), options.option);
-    iterator.index++;
+    options = parseOption(iterator.currentArg(), iterator.nextArg());
+    iterator.nextArg();
   }
   const fileNames = parseFileName(iterator);
   return { fileNames, options };
@@ -106,3 +107,4 @@ const parseArgs = function (args) {
 
 exports.parseArgs = parseArgs;
 exports.splitArgs = splitArgs;
+exports.isOption = isOption;
