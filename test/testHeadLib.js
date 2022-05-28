@@ -8,7 +8,8 @@ describe('head', () => {
   });
 
   it('Should return only first 10 lines of content', () => {
-    assert.strictEqual(head('a\nb\nc\nd\ne\nf\ng\nh\ni\nj\nk', { option: 'lines', count: 10 }), 'a\nb\nc\nd\ne\nf\ng\nh\ni\nj');
+    const actualContent = 'a\nb\nc\nd\ne\nf\ng\nh\ni\nj\nk';
+    assert.strictEqual(head(actualContent, { option: 'lines', count: 10 }), 'a\nb\nc\nd\ne\nf\ng\nh\ni\nj');
     assert.strictEqual(head('a\nb\nc\nd\ne\nf\ng\nh\ni\nj', { option: 'lines', count: 10 }), 'a\nb\nc\nd\ne\nf\ng\nh\ni\nj');
   });
 

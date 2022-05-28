@@ -1,4 +1,4 @@
-const { parseArgs, multiFileFormat, processFile, printResult } = require('./headLib.js');
+const { parseArgs, multiFileFormat, processFile, print } = require('./headLib.js');
 
 const lastNLines = function (content, count) {
   const lines = content.split('\n');
@@ -25,7 +25,7 @@ const tailMain = function (logger, readFile, ...args) {
   const fn = tail;
   const result = fileNames.map(file =>
     processFile(fn, options, file, readFile, formatter));
-  printResult(logger, result);
+  result.map((content) => print(logger, content));
 };
 
 exports.tail = tail;

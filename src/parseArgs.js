@@ -1,14 +1,17 @@
-const argsIterator = function (args) {
-  const currentArg = function () {
-    return args[this.index];
-  };
-  const nextArg = function () {
-    this.index++;
-    return args[this.index];
-  };
-  const hasMoreArgs = function () {
-    return this.index < this.args.length;
-  };
+const currentArg = function () {
+  return this.args[this.index];
+};
+
+const nextArg = function () {
+  this.index++;
+  return this.args[this.index];
+};
+
+const hasMoreArgs = function () {
+  return this.index < this.args.length;
+};
+
+const argsIterator = (args) => {
   const iterator = {};
   iterator.index = 0;
   iterator.currentArg = currentArg.bind(iterator);
@@ -19,9 +22,8 @@ const argsIterator = function (args) {
 };
 
 const isValidFlag = (option) => ['-n', '-c'].includes(option);
-const isValidCount = function (count) {
-  return isFinite(count) && count !== 0;
-};
+
+const isValidCount = (count) => isFinite(count) && count !== 0;
 
 const usageError = () => {
   return { message: 'usage: head [-n lines | -c bytes] [file ...]' };
@@ -46,22 +48,22 @@ const inValidCombinationError = () => {
   };
 };
 
-const parseFileName = function (iterator) {
+const parseFileName = (iterator) => {
   if (iterator.index === iterator.args.length) {
     throw usageError();
   }
   return iterator.args.slice([iterator.index]);
 };
 
-const parseFlag = function (option) {
+const parseFlag = (option) => {
   if (!isValidFlag(option)) {
     throw inValidOptionError(option);
   }
-  const map = {'-n': 'lines', '-c': 'bytes'};
+  const map = { '-n': 'lines', '-c': 'bytes' };
   return map[option];
 };
 
-const parseCount = function (count, option) {
+const parseCount = (count, option) => {
   if (!isValidCount(+count)) {
     throw inValidCountError(option, count);
   }
@@ -70,34 +72,40 @@ const parseCount = function (count, option) {
 
 const isOption = (arg) => arg.startsWith('-');
 
-const splitArg = function (arg) {
+const splitArg = (arg) => {
   if (isFinite(arg.slice(1))) {
     return ['-n', arg.slice(1)];
   }
   return [arg.slice(0, 2), arg.slice(2)];
 };
 
-const splitArgs = function (args) {
+const splitArgs = (args) => {
   const splittedArgs = args.flatMap(arg => isOption(arg) ? splitArg(arg) : arg);
   return splittedArgs.filter(arg => arg);
 };
 
-const throwIfBothOptionsPresent = (args) => {
+const validateCombinedOptions = (args) => {
   if (args.includes('-n') && args.includes('-c')) {
     throw inValidCombinationError();
   }
 };
 
-const parseOption = function (flag, count) {
+const parseOption = (flag, count) => {
   return { option: parseFlag(flag), count: parseCount(count, flag) };
 };
 
-const parseArgs = function (rawArgs) {
-  let options = { option: 'lines', count: 10 };
+const hasMoreOptions = (iterator) => {
+  return iterator.hasMoreArgs() && isOption(iterator.currentArg());
+};
+
+const parseArgs = (rawArgs) => {
   const args = splitArgs(rawArgs);
-  throwIfBothOptionsPresent(args);
+  validateCombinedOptions(args);
   const iterator = argsIterator(args);
-  while (iterator.hasMoreArgs() && isOption(iterator.currentArg())) {
+
+  let options = { option: 'lines', count: 10 };
+
+  while (hasMoreOptions(iterator)) {
     options = parseOption(iterator.currentArg(), iterator.nextArg());
     iterator.nextArg();
   }

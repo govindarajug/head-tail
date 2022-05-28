@@ -1,12 +1,12 @@
 const fs = require('fs');
 
 const main = (funcToCall, ...args) => {
-  const log = console.log;
-  const error = console.error;
+  const { log, error } = console;
   try {
     funcToCall({ log, error }, fs.readFileSync, ...args);
-  } catch (error) {
-    console.error(error.message);
+  } catch (err) {
+    error(err.message);
+    process.exitCode = 1;
   }
 };
 

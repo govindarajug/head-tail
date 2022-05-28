@@ -23,6 +23,9 @@
 
 ## TODO
 
+- [ ] change processFile work for head only
+- [ ] extract conditions in headMain
+
 ## MAYBE
 
 ## DONE
