@@ -20,14 +20,14 @@ const fileReader = (fileName, readFile) => {
   return fileContent;
 };
 
-const processFile = (fn, options, fileName, readFile, header) => {
+const headOfFile = (fileName, options, readFile, header) => {
   const result = fileReader(fileName, readFile);
   result.fileName = fileName;
   if (result.error) {
     return result;
   }
-  result.content = fn(result.content, options);
-  result.header = header(result);
+  result.content = head(result.content, options);
+  result.header = header(result.fileName);
   return result;
 };
 
@@ -39,23 +39,26 @@ const print = (logger, result) => {
   logger.log(result.header + result.content);
 };
 
-const multiFileFormat = (content) => `==> ${content.fileName} <==\n`;
+const multiFileHeader = (fileName) => `==> ${fileName} <==\n`;
+
+const selectHeader = (fileNames) => {
+  let header = () => '';
+  if (fileNames.length > 1) {
+    header = multiFileHeader;
+  }
+  return header;
+};
 
 const headMain = (logger, readFile, ...args) => {
   const { fileNames, options } = parseArgs(args);
-  let formatter = () => '';
-  if (fileNames.length > 1) {
-    formatter = multiFileFormat;
-  }
-  const result = fileNames.map(file =>
-    processFile(head, options, file, readFile, formatter));
+  const header = selectHeader(fileNames);
 
-  result.map((content) => print(logger, content));
+  const headOfFiles = fileNames.map(file =>
+    headOfFile(file, options, readFile, header));
+  
+  headOfFiles.map((content) => print(logger, content));
 };
 
 exports.head = head;
 exports.headMain = headMain;
-exports.parseArgs = parseArgs;
-exports.multiFileFormat = multiFileFormat;
-exports.processFile = processFile;
-exports.print = print;
+exports.multiFileHeader = multiFileHeader;

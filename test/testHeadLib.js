@@ -1,5 +1,5 @@
 const assert = require('assert');
-const { head } = require('../src/headLib.js');
+const { head, multiFileHeader } = require('../src/headLib.js');
 
 describe('head', () => {
   it('Should return content', () => {
@@ -21,5 +21,12 @@ describe('head', () => {
     assert.strictEqual(head('abc', { option: 'bytes', count: 1 }), 'a');
     assert.strictEqual(head('abc', { option: 'bytes', count: 2 }), 'ab');
     assert.strictEqual(head('a\nc', { option: 'bytes', count: 2 }), 'a\n');
+  });
+});
+
+describe('multiFileHeader', () => {
+  it('Should return filename formatted', () => {
+    assert.strictEqual(multiFileHeader('a.txt'), '==> a.txt <==\n');
+    assert.strictEqual(multiFileHeader('b.txt'), '==> b.txt <==\n');
   });
 });

@@ -23,13 +23,13 @@
 
 ## TODO
 
-- [ ] change processFile work for head only
-- [ ] extract conditions in headMain
 
 ## MAYBE
 
 ## DONE
 
+- [x] extract conditions in headMain
+- [x] change processFile work for head only
 - [x] consider richer structure to pass for head
 - [x] implement head.js to work for multiple files
 - [x] parse filenames as array on `parseArgs.js`
